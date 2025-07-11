@@ -1,0 +1,54 @@
+main {
+    margin: auto;
+    text-align: center;
+}
+
+label {
+    font-size: 1.3rem;
+}
+
+input {
+    width: 200px;
+    height: 30px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    padding: 5px;
+}
+
+input:focus {
+    border: 2px solid #007bff;
+    outline: none;
+}
+
+button {
+    margin-left: 8px;
+    border-radius: 5px;
+    background-color: #007bff;
+    color: white;
+    cursor: pointer;
+    border: none;
+}
+
+.bi-x {
+    display: none;
+    margin-right: 8px;
+}
+
+.bi-bag-plus-fill {
+    font-size: 1.2rem;
+}
+
+li {
+    list-style-type: none;
+}
+
+footer {
+    background-color: #ccc;
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
