@@ -66,10 +66,9 @@ input:focus {
     width: 50px;
 }
 
-.marcado:checked {
-    li {
+.marcado:checked li{
         text-decoration: line-through;
-    }
+    
 }
 
 button {
