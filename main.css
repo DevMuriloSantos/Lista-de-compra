@@ -9,7 +9,7 @@ body {
     margin: 0;
     padding: 0;
     background-image: url('/img-lista/img-mercado.jpg');
-    backdrop-filter: blur(0.5px);
+    backdrop-filter: blur(1px);
 }
 
 header {
@@ -64,12 +64,7 @@ input:focus {
 .marcado {
     height: 18px;
     width: 50px;
-}
-
-.marcado:checked {
-    li {
-        text-decoration: line-through;
-    }
+    text-decoration: line-through;
 }
 
 button {
