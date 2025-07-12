@@ -1,6 +1,47 @@
+body,
+html {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    background-image: url('/img-lista/img-mercado.jpg');
+    backdrop-filter: blur(0.5px);
+}
+
+header {
+    height: 60px;
+    padding: 10px;
+    background-color: #007bff;
+}
+
+h1 {
+    text-align: center;
+}
+
+.bi-trash3 {
+    position: relative;
+    bottom: 30px;
+    color: white;
+    font-size: 1.5rem;
+    display: flex;
+    justify-content: end;
+}
+
 main {
     margin: auto;
+    padding-top: 10px;
     text-align: center;
+    background-color: white;
+    border-radius: 8px;
+    width: 90%;
+}
+
+ul {
+    padding: 0;
 }
 
 label {
@@ -18,6 +59,17 @@ input {
 input:focus {
     border: 2px solid #007bff;
     outline: none;
+}
+
+.marcado {
+    height: 18px;
+    width: 50px;
+}
+
+.marcado:checked {
+    li {
+        text-decoration: line-through;
+    }
 }
 
 button {
