@@ -61,7 +61,7 @@ ul.addEventListener('change', function (e) {
 lixeira.addEventListener('click', function () {
     const pergunta = prompt("Deseja realmente apagar os itens selecionados ?")
 
-    if (pergunta.toLowerCase == "sim") {
+    if (pergunta == "sim") {
         // Seleciona todos os checkboxes marcados
         const marcados = document.querySelectorAll('.marcado:checked');
         marcados.forEach(checkbox => {
