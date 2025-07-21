@@ -5,9 +5,8 @@ const lixeira = document.getElementById("lixeira")
 for (let i = 0; i < localStorage.length; i++) {
     const key = localStorage.key(i);
     const li = document.createElement("li");
-
-    li.textContent = key;
-    li.innerHTML += '<input type="checkbox" name="check" class="marcado">';
+    li.setAttribute('data-item', key); // Adiciona o atributo data-item
+    li.innerHTML = `${key} <input type="checkbox" name="marcado" class="marcado">`;
     ul.appendChild(li);
 }
 
@@ -18,21 +17,22 @@ add.addEventListener("click", function (event) {
 
     if (item) { // Verifica se o input não está vazio
         let li = document.createElement("li");
-        li.textContent = item; // Define o texto do <li>
+        li.setAttribute('data-item', item); // Salva o nome do item
+
+        li.innerHTML = `${item} <input type="checkbox" name="marcado" class="marcado">`;
 
         for (let i = 0; i < ul.children.length; i++) {
-            if (item == ul.children[i].textContent) {
+            if (item == ul.children[i].getAttribute('data-item')) {
                 alert("Item já adicionado! Por favor digite outro item.");
 
                 document.getElementById("list").value = "";
-                return; // Sai da função para não adicionar o item novamente
+                return;
             }
-        };
+        }
 
 
         localStorage.setItem(item, item); // Adiciona o item ao localStorage (chave, valor)
 
-        li.innerHTML += '<input type="checkbox" name="marcado" class="marcado">';
         li.classList.add('li')
         ul.appendChild(li); // Adiciona o <li> à lista
         alert("Item adicionado com sucesso!"); // Alerta de sucesso
@@ -59,19 +59,19 @@ ul.addEventListener('change', function (e) {
 });
 
 lixeira.addEventListener('click', function () {
-    const pergunta = prompt("Deseja realmente apagar os itens selecionados ?")
+    const pergunta = prompt("Deseja realmente apagar os itens selecionados ?");
 
-    if (pergunta.toLowerCase == "sim") {
-        // Seleciona todos os checkboxes marcados
+    if (pergunta && pergunta.toLowerCase() == "sim") {
         const marcados = document.querySelectorAll('.marcado:checked');
         marcados.forEach(checkbox => {
-            const li = checkbox.parentElement;
-            const item = li.childNodes[0].textContent.trim();
-            localStorage.removeItem(item); // Remove do localStorage
-            li.remove(); // Remove o <li> da lista
+            const li = checkbox.closest('li');
+
+            const item = li.getAttribute('data-item');
+            
+            localStorage.removeItem(item);
+            li.remove();
         });
 
-        alert("Item(s) removido com sucesso!")
+        alert("Item(s) removido com sucesso!");
     }
 });
-
