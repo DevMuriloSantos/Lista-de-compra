@@ -2,6 +2,8 @@ const add = document.getElementById("add");
 const ul = document.getElementById("ul");
 const lixeira = document.getElementById("lixeira")
 
+let contagem = 0;
+
 for (let i = 0; i < localStorage.length; i++) {
     const key = localStorage.key(i);
     const li = document.createElement("li");
@@ -50,16 +52,26 @@ ul.addEventListener('change', function (e) {
         e.target.parentElement.style.textDecoration = 'line-through';
 
         lixeira.style.color = "#a72525"
+        contagem++
     }
 
     else {
         e.target.parentElement.style.textDecoration = '';
-        lixeira.style.color = "white"
+
+        contagem--
     }
 });
 
 lixeira.addEventListener('click', function () {
-    const pergunta = prompt("Deseja realmente apagar os itens selecionados ?");
+    let pergunta = null;
+
+    if (contagem == 1) {
+        pergunta = prompt("Há 1 item na lixeira! Deseja realmente apagar o item selecionados ?");
+    } else if (contagem > 1) {
+        pergunta = prompt(`Há ${contagem} itens na lixeira! Deseja realmente apagar os itens selecionados ?`);
+    } else {
+        pergunta = alert("Nenhum item selecionado!");
+    }
 
     if (pergunta && pergunta.toLowerCase() == "sim") {
         const marcados = document.querySelectorAll('.marcado:checked');
@@ -67,7 +79,7 @@ lixeira.addEventListener('click', function () {
             const li = checkbox.closest('li');
 
             const item = li.getAttribute('data-item');
-            
+
             localStorage.removeItem(item);
             li.remove();
         });
